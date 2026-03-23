@@ -11,7 +11,7 @@ import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record CreateTaskReqestDto(
+public record CreateTaskRequestDto(
     @NotBlank(message = ERROR_MESSAGE_TITLE_LENGTH)
     @Length(max = 255, message = ERROR_MESSAGE_TITLE_LENGTH)
     String title,
@@ -25,7 +25,7 @@ public record CreateTaskReqestDto(
     LocalDate dueDate,
 
     @NotNull(message = ERROR_MESSAGE_PRIORITY)
-    TaskPriority taskPriority
+    TaskPriority priority
 ) {
 
     private static final String ERROR_MESSAGE_TITLE_LENGTH = 

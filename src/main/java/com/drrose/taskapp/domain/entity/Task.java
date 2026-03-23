@@ -55,6 +55,8 @@ public class Task {
         this.taskPriority = taskPriority;
         this.taskStatus = taskStatus;
         this.updated = updated;
+
+        System.out.println("New task created: " + this.toString());
     }
 
     public UUID getId() {

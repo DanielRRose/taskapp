@@ -33,6 +33,8 @@ public class TaskServiceImpl implements TaskService {
                 TaskStatus.OPEN,
                 now);
 
+        // System.out.println(task.toString());
+
         return taskRepository.save(task);
 
     }

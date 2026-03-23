@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drrose.taskapp.domain.CreateTaskRequest;
-import com.drrose.taskapp.domain.dto.CreateTaskReqestDto;
+import com.drrose.taskapp.domain.dto.CreateTaskRequestDto;
 import com.drrose.taskapp.domain.dto.TaskDto;
 import com.drrose.taskapp.domain.entity.Task;
 import com.drrose.taskapp.mapper.TaskMapper;
@@ -33,7 +33,7 @@ public class TaskController {
 
             @RequestBody
             @Valid
-            CreateTaskReqestDto createTaskReqestDto) {
+            CreateTaskRequestDto createTaskReqestDto) {
 
         CreateTaskRequest createTaskRequest = taskMapper.fromDto(createTaskReqestDto);
         Task task = taskService.createTask(createTaskRequest);

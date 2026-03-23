@@ -3,7 +3,7 @@ package com.drrose.taskapp.mapper.impl;
 import org.springframework.stereotype.Component;
 
 import com.drrose.taskapp.domain.CreateTaskRequest;
-import com.drrose.taskapp.domain.dto.CreateTaskReqestDto;
+import com.drrose.taskapp.domain.dto.CreateTaskRequestDto;
 import com.drrose.taskapp.domain.dto.TaskDto;
 import com.drrose.taskapp.domain.entity.Task;
 import com.drrose.taskapp.mapper.TaskMapper;
@@ -12,12 +12,12 @@ import com.drrose.taskapp.mapper.TaskMapper;
 public class TaskMapperImpl implements TaskMapper {
 
     @Override
-    public CreateTaskRequest fromDto(CreateTaskReqestDto dto) {
+    public CreateTaskRequest fromDto(CreateTaskRequestDto dto) {
         return new CreateTaskRequest(
                 dto.title(),
                 dto.description(),
                 dto.dueDate(),
-                dto.taskPriority());
+                dto.priority());
     }
 
     @Override
