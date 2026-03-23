@@ -1,7 +1,10 @@
 package com.drrose.taskapp.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +34,19 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<TaskDto> createTask(
 
-            @RequestBody
-            @Valid
-            CreateTaskRequestDto createTaskReqestDto) {
+            @RequestBody @Valid CreateTaskRequestDto createTaskReqestDto) {
 
         CreateTaskRequest createTaskRequest = taskMapper.fromDto(createTaskReqestDto);
         Task task = taskService.createTask(createTaskRequest);
         TaskDto createdTaskDto = taskMapper.toDto(task);
 
         return new ResponseEntity<>(createdTaskDto, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TaskDto>> listTasks() {
+        List<Task> tasks = taskService.listTasks();
+        List<TaskDto> taskDtos = tasks.stream().map(taskMapper::toDto).toList();
+        return new ResponseEntity<>(taskDtos, HttpStatus.OK);
     }
 }

@@ -42,12 +42,15 @@ public class Task {
     @Column(name = "updated", nullable = false)
     private Instant updated;
 
+    @Column(name = "created", updatable = false, nullable = false)
+    private Instant created;
+
     public Task() {
 
     }
 
     public Task(UUID id, String title, String description, LocalDate dueDate, TaskPriority taskPriority,
-            TaskStatus taskStatus, Instant updated) {
+            TaskStatus taskStatus, Instant updated, Instant created) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -55,6 +58,7 @@ public class Task {
         this.taskPriority = taskPriority;
         this.taskStatus = taskStatus;
         this.updated = updated;
+        this.created = created;
 
         System.out.println("New task created: " + this.toString());
     }
@@ -114,6 +118,8 @@ public class Task {
     public void setUpdated(Instant updated) {
         this.updated = updated;
     }
+    
+    
 
     @Override
     public int hashCode() {
@@ -144,6 +150,14 @@ public class Task {
     public String toString() {
         return "Task [id=" + id + ", title=" + title + ", description=" + description + ", dueDate=" + dueDate
                 + ", taskPriority=" + taskPriority + ", taskStatus=" + taskStatus + ", updated=" + updated + "]";
+    }
+
+    public Instant getCreated() {
+        return created;
+    }
+
+    public void setCreated(Instant created) {
+        this.created = created;
     }
 
 }
