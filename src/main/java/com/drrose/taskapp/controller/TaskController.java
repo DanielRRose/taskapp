@@ -1,18 +1,24 @@
 package com.drrose.taskapp.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drrose.taskapp.domain.CreateTaskRequest;
+import com.drrose.taskapp.domain.UpdateTaskRequest;
 import com.drrose.taskapp.domain.dto.CreateTaskRequestDto;
 import com.drrose.taskapp.domain.dto.TaskDto;
+import com.drrose.taskapp.domain.dto.UpdateTaskRequestDto;
 import com.drrose.taskapp.domain.entity.Task;
 import com.drrose.taskapp.mapper.TaskMapper;
 import com.drrose.taskapp.service.TaskService;
@@ -48,5 +54,26 @@ public class TaskController {
         List<Task> tasks = taskService.listTasks();
         List<TaskDto> taskDtos = tasks.stream().map(taskMapper::toDto).toList();
         return new ResponseEntity<>(taskDtos, HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{taskId}")
+    public ResponseEntity<TaskDto> updateTask(
+
+        @Valid @RequestBody UpdateTaskRequestDto updateTaskRequestDto,
+        @PathVariable UUID taskId
+    ) {
+
+        UpdateTaskRequest updateTaskRequest = taskMapper.fromDto(updateTaskRequestDto);
+        Task task = taskService.updateTask(taskId, updateTaskRequest);
+        TaskDto updatedTaskDto = taskMapper.toDto(task);
+
+        return ResponseEntity.ok(updatedTaskDto);
+    }
+
+    @DeleteMapping(path = "/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable UUID taskId) {
+
+        taskService.DeleteTask(taskId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -14,4 +14,6 @@ public interface TaskService {
     List<Task> listTasks();
 
     Task updateTask(UUID taskId, UpdateTaskRequest request);
+
+    void DeleteTask(UUID taskId);
 }
