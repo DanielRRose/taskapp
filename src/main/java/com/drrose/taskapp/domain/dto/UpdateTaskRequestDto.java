@@ -31,10 +31,10 @@ public record UpdateTaskRequestDto(
 ) {
 
     private static final String ERROR_MESSAGE_TITLE_LENGTH = 
-    "Must be between 1 and 255 characters";
+    "Title must be between 1 and 255 characters";
 
     private static final String ERROR_MESSAGE_DESCRIPTION_LENGTH = 
-    "Must be between 1 and 1000 characters";
+    "Description must be between 1 and 1000 characters";
 
     private static final String ERROR_MESSAGE_DUEDATE_FUTURE = 
     "Must be present or future date";

@@ -8,7 +8,7 @@ import com.drrose.taskapp.domain.entity.TaskStatus;
 public record UpdateTaskRequest(
         String title,
         String description,
-        LocalDate duDate,
+        LocalDate dueDate,
         TaskStatus status,
         TaskPriority priority
     ) {

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -39,12 +40,14 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<TaskDto> createTask(
-
+            // @RequestBody flagged down for testing ModelAttribute
             @RequestBody @Valid CreateTaskRequestDto createTaskReqestDto) {
 
         CreateTaskRequest createTaskRequest = taskMapper.fromDto(createTaskReqestDto);
         Task task = taskService.createTask(createTaskRequest);
         TaskDto createdTaskDto = taskMapper.toDto(task);
+
+        System.out.println(createTaskReqestDto.toString());
 
         return new ResponseEntity<>(createdTaskDto, HttpStatus.CREATED);
     }

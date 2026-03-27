@@ -3,6 +3,7 @@ package com.drrose.taskapp.domain.dto;
 import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.drrose.taskapp.domain.entity.TaskPriority;
 
@@ -29,10 +30,10 @@ public record CreateTaskRequestDto(
 ) {
 
     private static final String ERROR_MESSAGE_TITLE_LENGTH = 
-    "Must be between 1 and 255 characters";
+    "Title must be between 1 and 255 characters";
 
     private static final String ERROR_MESSAGE_DESCRIPTION_LENGTH = 
-    "Must be between 1 and 1000 characters";
+    "Description must be between 1 and 1000 characters";
 
     private static final String ERROR_MESSAGE_DUEDATE_FUTURE = 
     "Must be present or future date";

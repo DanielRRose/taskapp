@@ -7,7 +7,7 @@ import com.drrose.taskapp.domain.entity.TaskPriority;
 public record CreateTaskRequest(
         String title,
         String description,
-        LocalDate duDate,
+        LocalDate dueDate,
         TaskPriority priority) {
 
 }
